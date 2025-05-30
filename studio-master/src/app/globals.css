@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 19%; /* Dark Gray #303030 */
+    --foreground: 0 0% 98%; /* Light Gray/White */
+
+    --card: 0 0% 24%; /* Slightly lighter dark gray e.g. #3D3D3D */
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 24%; /* Using card color for popover */
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 231 48% 48%; /* Deep Blue #3F51B5 */
+    --primary-foreground: 0 0% 98%; /* White/Light Gray */
+
+    --secondary: 0 0% 15%; /* Slightly darker than background e.g. #262626 */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%; /* Using secondary color for muted */
+    --muted-foreground: 0 0% 63.9%; /* Lighter gray for muted text e.g. #A3A3A3 */
+
+    --accent: 45 100% 51%; /* Amber #FFC107 */
+    --accent-foreground: 0 0% 10%; /* Darker color for text on amber, e.g. a dark gray or black #1A1A1A */
+
+    --destructive: 0 72% 51%; /* A standard red for destructive actions e.g. #E53E3E */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 25%; /* A shade for borders e.g. #404040 */
+    --input: 0 0% 25%; /* Input background, same as border */
+    --ring: 45 100% 51%; /* Accent for ring */
+
+    --radius: 0.5rem;
+
+    /* Chart colors from existing, can be adjusted if charts are used extensively */
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    
+    /* Sidebar specific colors adjusted for the dark theme */
+    --sidebar-background: 0 0% 12%; /* Even darker for sidebar e.g. #1F1F1F */
+    --sidebar-foreground: 0 0% 95%; /* Light gray for sidebar text */
+    --sidebar-primary: 231 48% 48%; /* Main primary blue */
+    --sidebar-primary-foreground: 0 0% 98%; /* White for text on primary */
+    --sidebar-accent: 45 100% 51%; /* Main accent amber */
+    --sidebar-accent-foreground: 0 0% 10%; /* Dark text for on accent */
+    --sidebar-border: 0 0% 20%; /* Border for sidebar elements */
+    --sidebar-ring: 45 100% 51%; /* Ring color, same as accent */
+  }
+
+  /* No .dark class needed as the default theme is dark. 
+     If a light theme is ever added, the variables above would go into a .dark class, 
+     and :root would contain light theme variables.
+  */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans), sans-serif; /* Ensures Geist Sans is applied */
+  }
+  /* Fix for Next.js App Router with next-themes and sticky headers/elements */
+  html.dark {
+    color-scheme: dark;
+  }
+}
