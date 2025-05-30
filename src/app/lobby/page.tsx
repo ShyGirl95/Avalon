@@ -11,13 +11,13 @@ import { PlusCircle, LogOut, Swords, Settings, MessageSquare, Users } from 'luci
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from "@/hooks/use-toast";
 
-// Interface for a lobby object (even if not listed, used for creation)
+// интерфейс лобби
 interface Lobby {
   id: string;
   name: string;
   playerCount: number;
   maxPlayers: number;
-  status: 'waiting' | 'in-progress'; // 'in-progress' might not be relevant if we don't list lobbies
+  status: 'waiting' | 'in-progress'; // 'in-progress' может быть неактуально если пушим лобби
   admin: string; 
 }
 
@@ -27,7 +27,7 @@ export default function LobbyPage() {
   
   const [isCreateLobbyDialogOpen, setIsCreateLobbyDialogOpen] = useState(false);
   const [newLobbyName, setNewLobbyName] = useState('');
-  const [newLobbyMaxPlayers, setNewLobbyMaxPlayers] = useState<number>(7); // Default max players
+  const [newLobbyMaxPlayers, setNewLobbyMaxPlayers] = useState<number>(7); // макс кол-во игроков по дефолту
   const [isCreatingLobby, setIsCreatingLobby] = useState(false);
 
   const [joinLobbyIdInput, setJoinLobbyIdInput] = useState('');
@@ -58,10 +58,10 @@ export default function LobbyPage() {
     }
 
     setIsCreatingLobby(true);
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000)); // симуляция APIшки
     
     const newLobby: Lobby = {
-      id: String(Date.now()), // In a real app, this ID would come from the backend
+      id: String(Date.now()), // в след версиях этот идентификатор будет поступать из бекенда
       name: newLobbyName.trim(),
       playerCount: 1, 
       maxPlayers: newLobbyMaxPlayers, 
@@ -70,7 +70,7 @@ export default function LobbyPage() {
     };
     
     setNewLobbyName('');
-    setNewLobbyMaxPlayers(7); // Reset to default
+    setNewLobbyMaxPlayers(7); // ресет по молчанию
     setIsCreateLobbyDialogOpen(false);
     setIsCreatingLobby(false);
     toast({ title: "Lobby Created!", description: `"${newLobby.name}" is ready with ID ${newLobby.id}. Redirecting...`});
@@ -84,7 +84,7 @@ export default function LobbyPage() {
     }
     setIsJoiningLobby(true);
     toast({ title: `Attempting to join lobby ${joinLobbyIdInput}`, description: "Preparing your seat at the Round Table..."});
-    // Simulate joining
+    // симуляция входа
     setTimeout(() => {
       router.push(`/game/${joinLobbyIdInput.trim()}`);
       setJoinLobbyIdInput('');

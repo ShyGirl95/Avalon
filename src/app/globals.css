@@ -51,11 +51,6 @@
     --sidebar-border: 0 0% 20%; /* Border for sidebar elements */
     --sidebar-ring: 45 100% 51%; /* Ring color, same as accent */
   }
-
-  /* No .dark class needed as the default theme is dark. 
-     If a light theme is ever added, the variables above would go into a .dark class, 
-     and :root would contain light theme variables.
-  */
 }
 
 @layer base {

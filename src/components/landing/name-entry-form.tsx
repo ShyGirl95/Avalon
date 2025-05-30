@@ -21,7 +21,7 @@ export default function NameEntryForm() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!isMounted) return; // Prevent submission if not mounted (for localStorage access)
+    if (!isMounted) return; // предотвращает отправку (for localStorage access)
 
     if (!playerName.trim()) {
       toast({
@@ -53,7 +53,7 @@ export default function NameEntryForm() {
 
     setTimeout(() => {
       router.push('/lobby');
-      // setIsLoading(false); // No need to set false if navigating away
+      // setIsLoading(false); // нет необходимости устанавливать false при переходе на другую страницу
     }, 1500);
   };
 
