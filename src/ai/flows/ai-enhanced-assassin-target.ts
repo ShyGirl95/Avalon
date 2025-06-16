@@ -1,4 +1,13 @@
+// src/ai/flows/ai-enhanced-assassin-target.ts
 'use server';
+
+/**
+ * @fileOverview An AI-enhanced assassin target selection agent.
+ *
+ * - aiEnhancedAssassinTarget - A function that determines the most influential player for the assassin to target.
+ * - AiEnhancedAssassinTargetInput - The input type for the aiEnhancedAssassinTarget function.
+ * - AiEnhancedAssassinTargetOutput - The return type for the aiEnhancedAssassinTarget function.
+ */
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';

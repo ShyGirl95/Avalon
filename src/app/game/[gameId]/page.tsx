@@ -152,7 +152,7 @@ export default function GamePage() {
         description: `You are ${name}. Manage the lobby and start the game when ready. Add bots from spectators to start.`,
       });
     }
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router, gameId]);
 
   useEffect(() => {
@@ -174,7 +174,7 @@ export default function GamePage() {
         role: 'Unknown', 
         isCurrentLeader: p.id === leaderPId
     })));
-    setSpectators(currentSpectators.map(s => ({ ...s, role: 'Unknown' }))); // сброс ролей 
+    setSpectators(currentSpectators.map(s => ({ ...s, role: 'Unknown' }))); // Ensure spectators also have roles reset conceptually
 
     if (leaderPId) {
         setCurrentLeaderId(leaderPId);
@@ -294,6 +294,7 @@ export default function GamePage() {
     const botPlayers = players.filter(p => p.isBot && p.id !== currentLeaderId);
     let allVotes = { ...newPlayerVotes };
 
+    // Simulate bot votes - FOR TESTING: ALL BOTS APPROVE
     botPlayers.forEach(bot => {
         if (!allVotes[bot.id]) { 
             allVotes[bot.id] = 'approve'; 
@@ -334,7 +335,7 @@ export default function GamePage() {
 
         if (newConsecutiveRejections >= 4) {
             toast({ title: "Evil Wins!", description: "Four consecutive teams were rejected.", variant: "destructive" });
-            setEvilScore(prev => Math.min(3, prev + 3));  // 3 очка максимум
+            setEvilScore(prev => Math.min(3, prev + 3));  // Cap at 3 points for evil
             setGamePhase('game_over');
         } else {
             updatedMissions[missionIdx].status = 'team_selection';
